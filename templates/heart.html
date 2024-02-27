@@ -1,0 +1,111 @@
+{% extends 'base.html' %}  <!-- Extend from base.html -->
+
+{% block content %}  <!-- Start of content block -->
+
+<style>
+    .ok{
+        color: green;
+        font-size: 50px;
+    }
+</style>
+<div class="container">
+    <div class="display-4 my-2 text-center" style="color: #007bff;"><strong>Triumph's</strong> <br> Heart Disease Prediction System</div>
+    <hr />
+ 
+    {% if context %}  <!-- Check if 'context' variable exists -->
+    <div class="h1 my-2 text-center" style="color: #4CAF50;">
+        Hi, You {{ context }} heart disease.
+    </div>
+    {% endif %}
+ 
+    
+     <div class="col-md-6">
+        <form class="my-4 p-3 bg-light border rounded"  method="POST" action="{% url 'heart' %}">  <!-- Form to submit user data to 'heart' view -->
+            {% csrf_token %}  <!-- Add CSRF token for form submission security -->
+            {{form}}
+                
+                {% comment %} <!-- Age input field -->
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age">
+                </div>
+                
+                <!-- Sex input field -->
+                <div class="form-group">
+                    <label for="sex">Sex (0 for female, 1 for male)</label>
+                    <input type="number" class="form-control" id="sex" name="sex" placeholder="Enter your sex">
+                </div>
+                
+                <!-- CP input field -->
+                <div class="form-group">
+                    <label for="cp">Chest Pain Type (CP)</label>
+                    <input type="number" class="form-control" id="cp" name="cp" placeholder="Enter chest pain type">
+                </div>
+                
+                <!-- TRESTBPS input field -->
+                <div class="form-group">
+                    <label for="trestbps">Resting Blood Pressure (TRESTBPS)</label>
+                    <input type="number" class="form-control" id="trestbps" name="trestbps" placeholder="Enter resting blood pressure">
+                </div>
+                
+                <!-- CHOL input field -->
+                <div class="form-group">
+                    <label for="chol">Serum Cholesterol (CHOL)</label>
+                    <input type="number" class="form-control" id="chol" name="chol" placeholder="Enter serum cholesterol level">
+                </div>
+                
+                <!-- FBS input field -->
+                <div class="form-group">
+                    <label for="fbs">Fasting Blood Sugar (FBS)</label>
+                    <input type="number" class="form-control" id="fbs" name="fbs" placeholder="Enter fasting blood sugar level">
+                </div>
+                
+                <!-- RESTECG input field -->
+                <div class="form-group">
+                    <label for="restecg">Resting ECG (RESTECG)</label>
+                    <input type="number" class="form-control" id="restecg" name="restecg" placeholder="Enter resting ECG results">
+                </div>
+                
+                <!-- THALACH input field -->
+                <div class="form-group">
+                    <label for="thalach">Max Heart Rate (THALACH)</label>
+                    <input type="number" class="form-control" id="thalach" name="thalach" placeholder="Enter maximum heart rate achieved">
+                </div>
+                
+                <!-- EXANG input field -->
+                <div class="form-group">
+                    <label for="exang">Exercise Induced Angina (EXANG)</label>
+                    <input type="number" class="form-control" id="exang" name="exang" placeholder="Enter exercise-induced angina">
+                </div>
+                
+                <!-- OLDPEAK input field -->
+                <div class="form-group">
+                    <label for="oldpeak">ST Depression (OLDPEAK)</label>
+                    <input type="number" class="form-control" id="oldpeak" name="oldpeak" placeholder="Enter ST depression induced by exercise">
+                </div>
+                
+                <!-- SLOPE input field -->
+                <div class="form-group">
+                    <label for="slope">Slope of Peak Exercise ST Segment (SLOPE)</label>
+                    <input type="number" class="form-control" id="slope" name="slope" placeholder="Enter slope of peak exercise ST segment">
+                </div>
+                
+                <!-- CA input field -->
+                <div class="form-group">
+                    <label for="ca">Number of Major Vessels (CA)</label>
+                    <input type="number" class="form-control" id="ca" name="ca" placeholder="Enter number of major vessels">
+                </div>
+                
+                <!-- THAL input field -->
+                <div class="form-group">
+                    <label for="thal">Thalassemia (THAL)</label>
+                    <input type="number" class="form-control" id="thal" name="thal" placeholder="Enter thalassemia value">
+                </div>
+  {% endcomment %}
+            <div class="mt-4">
+                <button type="submit" class="btn btn-lg btn-danger mt-3">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}  <!-- End of content block -->
